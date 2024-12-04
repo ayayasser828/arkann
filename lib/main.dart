@@ -49,6 +49,25 @@ Future<void> main() async {
     provisional: false,
     sound: true,
   );
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  if (Platform.isIOS) {
+    String? apnsToken = await _firebaseMessaging.getAPNSToken();
+    if (apnsToken != null) {
+      await _firebaseMessaging.subscribeToTopic("topic");
+    } else {
+      await Future<void>.delayed(
+        const Duration(
+          seconds: 3,
+        ),
+      );
+      apnsToken = await _firebaseMessaging.getAPNSToken();
+      if (apnsToken != null) {
+        await _firebaseMessaging.subscribeToTopic("topic");
+      }
+    }
+  } else {
+    await _firebaseMessaging.subscribeToTopic("topic");
+  }
   if (settings.authorizationStatus == AuthorizationStatus.authorized) {} else if (settings.authorizationStatus == AuthorizationStatus.provisional) {} else {}
   FirebaseMessaging.instance.getInitialMessage().then((message) {
     if (message != null) {
