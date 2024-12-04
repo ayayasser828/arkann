@@ -87,6 +87,7 @@ dependency_overrides:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
+  remove_alppha_ios: true
   image_path: "assets/icons/arkan-icon.png"
 
 dev_dependencies:
