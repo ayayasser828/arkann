@@ -252,11 +252,6 @@ class _ConfirmCartState extends State<ConfirmCart> {
                     color: Colors.black,
                     fontSize: w * 0.05),
               ),
-              actions: [
-                InkWell(
-                    onTap: () => Navigator.pop(context),
-                    child: Image.asset("assets/icons/Group 4.png"))
-              ],
               leading: const BackButton(color: Colors.black,),
               elevation: 0,
             ),
@@ -645,7 +640,7 @@ class _ConfirmCartState extends State<ConfirmCart> {
               padding: EdgeInsets.symmetric(
                   horizontal: w * 0.04, vertical: h * 0.03),
               decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: mainColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(w * 0.07),
                     topRight: Radius.circular(w * 0.07),
@@ -665,7 +660,7 @@ class _ConfirmCartState extends State<ConfirmCart> {
                           Text(
                             LocalKeys.TOTAL_PRICE.tr(),
                             style: TextStyle(
-                                color: mainColor,
+                                color: Colors.white,
                                 fontFamily:
                                     (lang == 'en') ? 'Nunito' : 'Almarai',
                                 fontWeight: FontWeight.bold,
