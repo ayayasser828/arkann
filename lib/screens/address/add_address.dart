@@ -65,6 +65,7 @@ class _AddressInfoState extends State<AddressInfo> with SingleTickerProviderStat
       List<TextEditingController>.generate(12, (_) => TextEditingController());
   final TextEditingController name = TextEditingController();
   final TextEditingController phone = TextEditingController();
+  final TextEditingController phoneUser = TextEditingController();
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
   final _formKey = GlobalKey<FormState>();
@@ -1070,7 +1071,43 @@ class _AddressInfoState extends State<AddressInfo> with SingleTickerProviderStat
                             errorBorder: form2(),
                             focusedErrorBorder: form2(),
                             suffixIcon: Text('*',style: TextStyle(color: mainColor,fontSize: w*0.07),),
-                            hintText: _hint[2],
+                            hintText: translateString("The recipient's Phone", 'رقم المستلم'),
+                            hintStyle: TextStyle(color: Colors.grey[400],fontSize: w * 0.03,),
+                          ),
+                        ),
+                        SizedBox(
+                          height: h * 0.02,
+                        ),
+                        TextFormField(
+                          cursorColor: Colors.black,
+                          controller: phoneUser,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            setState(() {
+                              prefs.setString(
+                                  "phone_add", phone.text);
+                            });
+                          },
+                          onEditingComplete: () {
+                            setState(() {
+                              prefs.setString(
+                                  "phone_add", phone.text);
+                            });
+                          },
+                          validator: (value) {
+                            if (value!.length < 8) {
+                              return LocalKeys.VALID_PHONE.tr();
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            focusedBorder: form(),
+                            enabledBorder: form2(),
+                            errorBorder: form2(),
+                            focusedErrorBorder: form2(),
+                            suffixIcon: Text('*',style: TextStyle(color: mainColor,fontSize: w*0.07),),
+                            hintText: translateString("Your Phone Number", 'رقم هاتفك'),
                             hintStyle: TextStyle(color: Colors.grey[400],fontSize: w * 0.03,),
                           ),
                         ),
@@ -1316,7 +1353,7 @@ class _AddressInfoState extends State<AddressInfo> with SingleTickerProviderStat
                                     cartLength: widget.cartLength,
                                     name: name.text,
                                     phone: phone.text,
-                                    email: '',
+                                    email: phoneUser.text,
                                     address: "",
                                     note: _listEd[11].text,
                                     context: context,
