@@ -321,7 +321,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                     .singleProductModel!
                                     .data!
                                     .images!.length : 1,
-                                position: _current,
+                                position: _current.toDouble(),
                                 mainAxisSize: MainAxisSize.min,
                                 decorator: DotsDecorator(
                                   color: Colors.grey, // Inactive color

@@ -363,7 +363,7 @@ class _TaboneScreenState extends State<TaboneScreen> {
                                         .data!
                                         .sliders!
                                         .length,
-                                    position: _current,
+                                    position: _current.toDouble(),
                                     mainAxisSize: MainAxisSize.min,
                                     decorator: DotsDecorator(
                                       color: Colors.grey, // Inactive color
