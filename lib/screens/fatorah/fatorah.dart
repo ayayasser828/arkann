@@ -52,16 +52,16 @@ class _FatorahScreenState extends State<FatorahScreen> {
     return Screenshot(
       controller: screenshotController,
       child: Scaffold(
-        backgroundColor: mainColor,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: mainColor,
+          backgroundColor: Colors.white,
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.transparent,
-                  border: Border.all(color: Colors.white),
+                  border: Border.all(color: mainColor),
                   shape: BoxShape.circle),
               child: Center(
                 child: IconButton(
@@ -73,8 +73,8 @@ class _FatorahScreenState extends State<FatorahScreen> {
                         MaterialPageRoute(builder: (context) => HomeScreen(index: 0)),
                             (route) => false);
                   },
-                  icon: const Icon(
-                    Icons.close,color: Colors.white,
+                  icon: Icon(
+                    Icons.close,color: mainColor,
                   ),
                 ),
               ),
@@ -89,20 +89,20 @@ class _FatorahScreenState extends State<FatorahScreen> {
                 builder: (context) {
                   return Column(
                     children: [
-                      const Text(
+                      Text(
                         'شكرا لتسوقك من تطبيق اركان',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: mainColor,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: h * 0.01,
                       ),
-                      const Text(
+                      Text(
                         'رقـم الفــاتــورة',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: mainColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
@@ -112,7 +112,7 @@ class _FatorahScreenState extends State<FatorahScreen> {
                       Text(
                         CartCubit.get(context).fatorrahModel!.order!.id.toString(),
                         style: TextStyle(
-                            color: Colors.white,
+                            color: mainColor,
                             fontSize: 30,
                             fontWeight: FontWeight.bold),
                       ),

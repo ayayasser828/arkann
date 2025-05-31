@@ -107,6 +107,8 @@ class _RayanCartBodyState extends State<RayanCartBody> {
     super.initState();
   }
 
+  bool click = false;
+
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
@@ -227,23 +229,45 @@ class _RayanCartBodyState extends State<RayanCartBody> {
                                 );
                               },
                               listener: (context, state) {
-                                if (state is CheckProductAddcartSuccessState &&
-                                    DataBaseCubit.get(context).counter[
-                                            DataBaseCubit.get(context).cart[index]
-                                                ['productId']]! <=
-                                        CartCubit.get(context).totalQuantity) {
-                                  setState(() {
-                                    RayanCartBody.finalPrice += DataBaseCubit.get(context)
-                                        .cart[index]['productPrice'];
-                                  });
-                                } else if (state is CheckProductAddcartSuccessState &&
-                                    DataBaseCubit.get(context).counter[
-                                            DataBaseCubit.get(context).cart[index]
-                                                ['productId']]! >
-                                        CartCubit.get(context).totalQuantity) {
-                                  setState(() {
-                                    RayanCartBody.finalPrice = RayanCartBody.finalPrice;
-                                  });
+                                if(!click){
+                                  if (state is CheckProductAddcartSuccessState &&
+                                      DataBaseCubit.get(context).counter[
+                                      DataBaseCubit.get(context).cart[index]
+                                      ['productId']]! <=
+                                          CartCubit.get(context).totalQuantity) {
+                                    setState(() {
+                                      click = true;
+                                    });
+                                    print(1);
+                                    setState(() {
+                                      RayanCartBody.finalPrice += DataBaseCubit.get(context)
+                                          .cart[index]['productPrice'];
+                                    });
+                                    print(2);
+                                    Future.delayed(const Duration(seconds: 1)).then((value) async {
+                                      setState(() {
+                                        click = false;
+                                      });
+                                    });
+                                  } else if (state is CheckProductAddcartSuccessState &&
+                                      DataBaseCubit.get(context).counter[
+                                      DataBaseCubit.get(context).cart[index]
+                                      ['productId']]! >
+                                          CartCubit.get(context).totalQuantity) {
+                                    setState(() {
+                                      click = true;
+                                    });
+                                    print(3);
+                                    setState(() {
+                                      RayanCartBody.finalPrice = RayanCartBody.finalPrice;
+                                    });
+                                    print(4);
+                                    Future.delayed(const Duration(seconds: 1)).then((value) async {
+                                      setState(() {
+                                        click = false;
+                                      });
+                                    });
+                                  }
                                 }
                               },
                             ),
